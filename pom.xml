@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.higlowx.scal</groupId>
+  <artifactId>spring-cloud-alibaba-learning</artifactId>
+  <version>0.1</version>
+  <packaging>pom</packaging>
+
+  <name>spring-cloud-alibaba-learning</name>
+
+  <modules>
+    <module>ebpp-service-bill</module>
+    <module>ebpp-service-trade</module>
+    <module>ebpp-service-msg</module>
+    <module>ebpp-gateway</module>
+    <module>ebpp-service-trade-route</module>
+    <module>ebpp-service-bill-route</module>
+    <module>ebpp-service-msg-route</module>
+    <module>ebpp-common</module>
+  </modules>
+
+  <distributionManagement>
+
+  </distributionManagement>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+    </pluginManagement>
+  </build>
+</project>
