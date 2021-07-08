@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+
+<!-- doc: http://mybatis.org/generator/configreference/xmlconfig.html -->
+<generatorConfiguration>
+
+    <context id="mysqlXgmTables" targetRuntime="MyBatis3">
+
+        <!-- 自动生成toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <!-- 自动生成equals方法和hashcode方法 -->
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/ebpp_trade?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;verifyServerCertificate=false&amp;useSSL=false"
+                        userId="root"
+                        password="root"/>
+
+        <javaTypeResolver>
+            <!-- 默认false，把JDBC DECIMAL和NUMERIC类型解析为Integer，为true时把JDBC DECIMAL和NUMERIC类型解析为java.math.BigDecimal -->
+            <property name="forceBigDecimals" value="true"/>
+            <!-- 这里不选择开启LocalDateTime，使用Date -->
+            <property name="useJSR310Types" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.higlowx.scal.ebpp.service.trade.entity"
+                            targetProject="src/main/java">
+            <!-- 指定example输出目录 -->
+            <property name="exampleTargetProject" value="src/main/java"/>
+            <property name="exampleTargetPackage" value="com.higlowx.scal.ebpp.service.trade.mybatis.example"/>
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="com.higlowx.scal.ebpp.service.trade.mybatis.mapper"
+                         targetProject="src/main/resources"/>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.higlowx.scal.ebpp.service.trade.mybatis.mapper"
+                             targetProject="src/main/java">
+
+        </javaClientGenerator>
+        <table tableName="t_ebpp_trade_trade" domainObjectName="Trade" mapperName="SimpleTradeMapper">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+    </context>
+
+
+</generatorConfiguration>

@@ -1,42 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.higlowx.scal</groupId>
-  <artifactId>spring-cloud-alibaba-learning</artifactId>
-  <version>0.1</version>
-  <packaging>pom</packaging>
+    <groupId>com.higlowx.scal</groupId>
+    <artifactId>spring-cloud-alibaba-learning</artifactId>
+    <version>0.1</version>
+    <packaging>pom</packaging>
 
-  <name>spring-cloud-alibaba-learning</name>
+    <name>spring-cloud-alibaba-learning</name>
 
-  <modules>
-    <module>ebpp-service-bill</module>
-    <module>ebpp-service-trade</module>
-    <module>ebpp-service-msg</module>
-    <module>ebpp-gateway</module>
-    <module>ebpp-service-trade-route</module>
-    <module>ebpp-service-bill-route</module>
-    <module>ebpp-service-msg-route</module>
-    <module>ebpp-common</module>
-  </modules>
+    <modules>
+        <module>ebpp-service-bill</module>
+        <module>ebpp-service-trade</module>
+        <module>ebpp-service-msg</module>
+        <module>ebpp-gateway</module>
+        <module>ebpp-service-trade-route</module>
+        <module>ebpp-service-bill-route</module>
+        <module>ebpp-service-msg-route</module>
+        <module>ebpp-common</module>
+    </modules>
 
-  <distributionManagement>
 
-  </distributionManagement>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot.version>2.1.18.RELEASE</spring-boot.version>
+        <scal.ebpp.version>0.1</scal.ebpp.version>
+        <tomcat.version>8.5.69</tomcat.version>
+    </properties>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+    <dependencyManagement>
+        <dependencies>
+            <!-- spring cloud alibaba-->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.2.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- spring boot begin-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+            </dependency>
+            <!-- spring boot end-->
 
-  <dependencyManagement>
-    <dependencies>
-    </dependencies>
-  </dependencyManagement>
+            <!-- tomcat begin -->
+            <!-- 由于spring cloud alibaba 官方推荐的spring boot版本，默认tomcat依赖为9.x，addServletMapping(String,String)方法被删除，最终导致无法运行启动 -->
+            <!-- 在此指定tomcat相关依赖的版本至8.x -->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>tomcat-annotations-api</artifactId>
+                        <groupId>org.apache.tomcat</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-websocket</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+            <!-- tomcat end -->
 
-  <build>
-    <pluginManagement>
-    </pluginManagement>
-  </build>
+            <!-- db begin -->
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>1.3.2</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>5.1.5</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.1.10</version>
+            </dependency>
+            <!-- pagehelper -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>1.2.5</version>
+            </dependency>
+            <!-- jackson -->
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.6</version>
+            </dependency>
+            <!-- db end -->
+
+            <!-- higlowx scal begin -->
+            <dependency>
+                <groupId>com.higlowx.scal</groupId>
+                <artifactId>ebpp-common</artifactId>
+                <version>${scal.ebpp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.higlowx.scal</groupId>
+                <artifactId>ebpp-service-trade-route</artifactId>
+                <version>${scal.ebpp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.higlowx.scal</groupId>
+                <artifactId>ebpp-service-bill-route</artifactId>
+                <version>${scal.ebpp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.higlowx.scal</groupId>
+                <artifactId>ebpp-service-msg-route</artifactId>
+                <version>${scal.ebpp.version}</version>
+            </dependency>
+            <!-- higlowx scal end -->
+
+            <!-- commons-lang -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.5</version>
+            </dependency>
+            <!-- other configs for reduce dependencies  -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>5.1.19.RELEASE</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+        </pluginManagement>
+    </build>
 </project>
