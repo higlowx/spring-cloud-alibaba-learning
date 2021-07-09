@@ -1,7 +1,7 @@
 package com.higlowx.scal.ebpp.service.bill.controller;
 
-import com.higlowx.scal.ebpp.common.res.EbppResponse;
-import com.higlowx.scal.ebpp.common.res.EbppResponseCode;
+import com.higlowx.scal.ebpp.common.res.UnifiedResponse;
+import com.higlowx.scal.ebpp.common.res.UnifiedResponseCode;
 import com.higlowx.scal.ebpp.service.bill.entity.Bill;
 import com.higlowx.scal.ebpp.service.bill.route.BillMainRoute;
 import com.higlowx.scal.ebpp.service.bill.service.BillService;
@@ -22,8 +22,8 @@ public class MainController implements BillMainRoute {
     private BillService billService;
 
     @Override
-    public EbppResponse<Object> create(BigDecimal amount, Integer tradeId) {
+    public UnifiedResponse<Object> create(BigDecimal amount, Integer tradeId) {
         Bill bill = billService.create(amount, tradeId);
-        return EbppResponse.out(EbppResponseCode.OK, bill);
+        return UnifiedResponse.out(UnifiedResponseCode.OK, bill);
     }
 }

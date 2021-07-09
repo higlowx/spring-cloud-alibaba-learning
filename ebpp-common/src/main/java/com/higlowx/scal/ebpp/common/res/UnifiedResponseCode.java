@@ -6,12 +6,12 @@ package com.higlowx.scal.ebpp.common.res;
  * @since
  */
 
-public enum EbppResponseCode {
+public enum UnifiedResponseCode {
 
     OK(200, "成功"),
     UNIFIED_FAIL(-1, "失败");
 
-    EbppResponseCode(final int code, final String msg) {
+    UnifiedResponseCode(final int code, final String msg) {
         this.code = code;
         this.msg = msg;
     }

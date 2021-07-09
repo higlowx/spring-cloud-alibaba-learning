@@ -6,20 +6,21 @@ package com.higlowx.scal.ebpp.common.res;
  * @since 0.1
  */
 
-public class EbppResponse<T> {
+public class UnifiedResponse<T> {
 
     private final int code;
     private final String msg;
     private final T data;
+    private final long timeStrap = System.currentTimeMillis();
 
-    private EbppResponse(int code, String msg, T data) {
+    private UnifiedResponse(int code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
     }
 
-    public static <T> EbppResponse<T> out(EbppResponseCode code, T data) {
-        return new EbppResponse<>(code.code(), code.msg(), data);
+    public static <T> UnifiedResponse<T> out(UnifiedResponseCode code, T data) {
+        return new UnifiedResponse<>(code.code(), code.msg(), data);
     }
 
     public int getCode() {
@@ -32,5 +33,9 @@ public class EbppResponse<T> {
 
     public T getData() {
         return data;
+    }
+
+    public long getTimeStrap() {
+        return timeStrap;
     }
 }

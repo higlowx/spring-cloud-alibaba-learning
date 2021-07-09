@@ -1,7 +1,7 @@
 package com.higlowx.scal.ebpp.service.bill.route;
 
 import com.higlowx.scal.ebpp.common.consts.UriConsts;
-import com.higlowx.scal.ebpp.common.res.EbppResponse;
+import com.higlowx.scal.ebpp.common.res.UnifiedResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +17,6 @@ import java.math.BigDecimal;
 public interface BillMainRoute {
 
     @GetMapping("/create")
-    EbppResponse<Object> create(@RequestParam BigDecimal amount, @RequestParam Integer tradeId);
+    UnifiedResponse<Object> create(@RequestParam BigDecimal amount, @RequestParam Integer tradeId);
 
 }

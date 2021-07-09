@@ -1,7 +1,7 @@
 package com.higlowx.scal.ebpp.service.trade.controller;
 
-import com.higlowx.scal.ebpp.common.res.EbppResponse;
-import com.higlowx.scal.ebpp.common.res.EbppResponseCode;
+import com.higlowx.scal.ebpp.common.res.UnifiedResponse;
+import com.higlowx.scal.ebpp.common.res.UnifiedResponseCode;
 import com.higlowx.scal.ebpp.service.trade.entity.Trade;
 import com.higlowx.scal.ebpp.service.trade.route.TradeMainRoute;
 import com.higlowx.scal.ebpp.service.trade.service.TradeService;
@@ -21,14 +21,14 @@ public class MainController implements TradeMainRoute {
     private TradeService tradeService;
 
     @Override
-    public EbppResponse<Object> create(BigDecimal amount) {
+    public UnifiedResponse<Object> create(BigDecimal amount) {
         Trade trade = tradeService.createTrade(amount);
-        return EbppResponse.out(EbppResponseCode.OK, trade);
+        return UnifiedResponse.out(UnifiedResponseCode.OK, trade);
     }
 
     @Override
-    public EbppResponse<String> callback(String requestBody) {
+    public UnifiedResponse<String> callback(String requestBody) {
 
-        return EbppResponse.out(EbppResponseCode.OK, "");
+        return UnifiedResponse.out(UnifiedResponseCode.OK, "");
     }
 }

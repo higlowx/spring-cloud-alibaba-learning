@@ -1,6 +1,6 @@
 package com.higlowx.scal.ebpp.common.ex;
 
-import com.higlowx.scal.ebpp.common.res.EbppResponseCode;
+import com.higlowx.scal.ebpp.common.res.UnifiedResponseCode;
 
 /**
  * @author Dylan.Li
@@ -30,32 +30,32 @@ public class UnifiedException extends RuntimeException {
     }
 
     public UnifiedException() {
-        super(EbppResponseCode.UNIFIED_FAIL.msg());
-        this.code = EbppResponseCode.UNIFIED_FAIL.code();
-        this.msg = EbppResponseCode.UNIFIED_FAIL.msg();
+        super(UnifiedResponseCode.UNIFIED_FAIL.msg());
+        this.code = UnifiedResponseCode.UNIFIED_FAIL.code();
+        this.msg = UnifiedResponseCode.UNIFIED_FAIL.msg();
     }
 
-    public UnifiedException(EbppResponseCode code) {
+    public UnifiedException(UnifiedResponseCode code) {
         super(code.msg());
         this.code = code.code();
         this.msg = code.msg();
     }
 
-    public UnifiedException(EbppResponseCode code, String msg) {
+    public UnifiedException(UnifiedResponseCode code, String msg) {
         super(msg);
         this.code = code.code();
         this.msg = msg;
     }
 
     public UnifiedException(int code) {
-        super(EbppResponseCode.UNIFIED_FAIL.msg());
+        super(UnifiedResponseCode.UNIFIED_FAIL.msg());
         this.code = code;
-        this.msg = EbppResponseCode.UNIFIED_FAIL.msg();
+        this.msg = UnifiedResponseCode.UNIFIED_FAIL.msg();
     }
 
     public UnifiedException(String msg) {
         super(msg);
-        this.code = EbppResponseCode.UNIFIED_FAIL.code();
+        this.code = UnifiedResponseCode.UNIFIED_FAIL.code();
         this.msg = msg;
     }
 

@@ -1,7 +1,7 @@
 package com.higlowx.scal.ebpp.common.utils;
 
 import com.higlowx.scal.ebpp.common.ex.UnifiedException;
-import com.higlowx.scal.ebpp.common.res.EbppResponseCode;
+import com.higlowx.scal.ebpp.common.res.UnifiedResponseCode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.lang.Nullable;
 import org.springframework.util.CollectionUtils;
@@ -28,13 +28,13 @@ public class AssertUtils {
         }
     }
 
-    public static void isNull(@Nullable Object object, EbppResponseCode code, String message) {
+    public static void isNull(@Nullable Object object, UnifiedResponseCode code, String message) {
         if (object != null) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void isNull(@Nullable Object object, EbppResponseCode code) {
+    public static void isNull(@Nullable Object object, UnifiedResponseCode code) {
         if (object != null) {
             throw new UnifiedException(code);
         }
@@ -64,13 +64,13 @@ public class AssertUtils {
         }
     }
 
-    public static void notNull(@Nullable Object object, EbppResponseCode code, String message) {
+    public static void notNull(@Nullable Object object, UnifiedResponseCode code, String message) {
         if (object == null) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void notNull(@Nullable Object object, EbppResponseCode code) {
+    public static void notNull(@Nullable Object object, UnifiedResponseCode code) {
         if (object == null) {
             throw new UnifiedException(code);
         }
@@ -100,13 +100,13 @@ public class AssertUtils {
         }
     }
 
-    public static void isTrue(boolean expression, EbppResponseCode code, String message) {
+    public static void isTrue(boolean expression, UnifiedResponseCode code, String message) {
         if (!expression) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void isTrue(boolean expression, EbppResponseCode code) {
+    public static void isTrue(boolean expression, UnifiedResponseCode code) {
         if (!expression) {
             throw new UnifiedException(code);
         }
@@ -136,13 +136,13 @@ public class AssertUtils {
         }
     }
 
-    public static void notTrue(boolean expression, EbppResponseCode code, String message) {
+    public static void notTrue(boolean expression, UnifiedResponseCode code, String message) {
         if (expression) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void notTrue(boolean expression, EbppResponseCode code) {
+    public static void notTrue(boolean expression, UnifiedResponseCode code) {
         if (expression) {
             throw new UnifiedException(code);
         }
@@ -172,13 +172,13 @@ public class AssertUtils {
         }
     }
 
-    public static void isEquals(Object object0, Object object1, EbppResponseCode code, String message) {
+    public static void isEquals(Object object0, Object object1, UnifiedResponseCode code, String message) {
         if (!object0.equals(object1)) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void isEquals(Object object0, Object object1, EbppResponseCode code) {
+    public static void isEquals(Object object0, Object object1, UnifiedResponseCode code) {
         if (!object0.equals(object1)) {
             throw new UnifiedException(code);
         }
@@ -208,13 +208,13 @@ public class AssertUtils {
         }
     }
 
-    public static void notEquals(Object object0, Object object1, EbppResponseCode code, String message) {
+    public static void notEquals(Object object0, Object object1, UnifiedResponseCode code, String message) {
         if (object0.equals(object1)) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void notEquals(Object object0, Object object1, EbppResponseCode code) {
+    public static void notEquals(Object object0, Object object1, UnifiedResponseCode code) {
         if (object0.equals(object1)) {
             throw new UnifiedException(code);
         }
@@ -244,13 +244,13 @@ public class AssertUtils {
         }
     }
 
-    public static void isEmpty(@Nullable Collection<?> collection, EbppResponseCode code, String message) {
+    public static void isEmpty(@Nullable Collection<?> collection, UnifiedResponseCode code, String message) {
         if (!CollectionUtils.isEmpty(collection)) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void isEmpty(@Nullable Collection<?> collection, EbppResponseCode code) {
+    public static void isEmpty(@Nullable Collection<?> collection, UnifiedResponseCode code) {
         if (!CollectionUtils.isEmpty(collection)) {
             throw new UnifiedException(code);
         }
@@ -280,13 +280,13 @@ public class AssertUtils {
         }
     }
 
-    public static void notEmpty(@Nullable Collection<?> collection, EbppResponseCode code, String message) {
+    public static void notEmpty(@Nullable Collection<?> collection, UnifiedResponseCode code, String message) {
         if (CollectionUtils.isEmpty(collection)) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void notEmpty(@Nullable Collection<?> collection, EbppResponseCode code) {
+    public static void notEmpty(@Nullable Collection<?> collection, UnifiedResponseCode code) {
         if (CollectionUtils.isEmpty(collection)) {
             throw new UnifiedException(code);
         }
@@ -316,13 +316,13 @@ public class AssertUtils {
         }
     }
 
-    public static void isBlank(@Nullable String object, EbppResponseCode code, String message) {
+    public static void isBlank(@Nullable String object, UnifiedResponseCode code, String message) {
         if (StringUtils.isNotBlank(object)) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void isBlank(@Nullable String object, EbppResponseCode code) {
+    public static void isBlank(@Nullable String object, UnifiedResponseCode code) {
         if (StringUtils.isNotBlank(object)) {
             throw new UnifiedException(code);
         }
@@ -352,13 +352,13 @@ public class AssertUtils {
         }
     }
 
-    public static void notBlank(@Nullable String object, EbppResponseCode code, String message) {
+    public static void notBlank(@Nullable String object, UnifiedResponseCode code, String message) {
         if (StringUtils.isBlank(object)) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void notBlank(@Nullable String object, EbppResponseCode code) {
+    public static void notBlank(@Nullable String object, UnifiedResponseCode code) {
         if (StringUtils.isBlank(object)) {
             throw new UnifiedException(code);
         }
@@ -388,13 +388,13 @@ public class AssertUtils {
         }
     }
 
-    public static void isEmpty(@Nullable String object, EbppResponseCode code, String message) {
+    public static void isEmpty(@Nullable String object, UnifiedResponseCode code, String message) {
         if (StringUtils.isNotEmpty(object)) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void isEmpty(@Nullable String object, EbppResponseCode code) {
+    public static void isEmpty(@Nullable String object, UnifiedResponseCode code) {
         if (StringUtils.isNotEmpty(object)) {
             throw new UnifiedException(code);
         }
@@ -424,13 +424,13 @@ public class AssertUtils {
         }
     }
 
-    public static void notEmpty(@Nullable String object, EbppResponseCode code, String message) {
+    public static void notEmpty(@Nullable String object, UnifiedResponseCode code, String message) {
         if (StringUtils.isEmpty(object)) {
             throw new UnifiedException(code, message);
         }
     }
 
-    public static void notEmpty(@Nullable String object, EbppResponseCode code) {
+    public static void notEmpty(@Nullable String object, UnifiedResponseCode code) {
         if (StringUtils.isEmpty(object)) {
             throw new UnifiedException(code);
         }
