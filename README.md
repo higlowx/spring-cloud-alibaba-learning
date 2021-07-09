@@ -11,19 +11,19 @@
 * ebpp-service-msg  消息服务，与支付系统配合模拟最终一致性分布式事务，使用消息中间件，基于可靠消息最终一致性、最大能努力通知理论
 
 ## 版本
-**Spring Cloud Alibaba**：2.1.2.RELEASE
+**Spring Cloud Alibaba**：2.2.6.RC1
 
-**Nacos**：1.2.1
+**Nacos**：1.4.2
 
-**Sentinel**：1.7.1
+**Sentinel**：1.8.1
 
-**Seata**：1.2.0
+**Seata**：1.3.0
 
 **RocketMQ**：4.4.0
 
-**Spring Boot**：2.1.X.RELEASE
+**Spring Boot**：2.3.2.RELEASE
 
-**Spring Cloud Greenwich**：Spring Cloud Greenwich
+**Spring Cloud Greenwich**：Spring Cloud Hoxton.SR9
 
 
   
