@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Copyright 1999-2018 Alibaba Group Holding Ltd.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,9 +54,7 @@ fi
 export SERVER="nacos-server"
 export MODE="cluster"
 export FUNCTION_MODE="all"
-export MEMBER_LIST=""
-export EMBEDDED_STORAGE=""
-while getopts ":m:f:s:c:p:" opt
+while getopts ":m:f:s:" opt
 do
     case $opt in
         m)
@@ -65,10 +63,6 @@ do
             FUNCTION_MODE=$OPTARG;;
         s)
             SERVER=$OPTARG;;
-        c)
-            MEMBER_LIST=$OPTARG;;
-        p)
-            EMBEDDED_STORAGE=$OPTARG;;
         ?)
         echo "Unknown parameter"
         exit 1;;
@@ -78,7 +72,8 @@ done
 export JAVA_HOME
 export JAVA="$JAVA_HOME/bin/java"
 export BASE_DIR=`cd $(dirname $0)/..; pwd`
-export CUSTOM_SEARCH_LOCATIONS=file:${BASE_DIR}/conf/
+export DEFAULT_SEARCH_LOCATIONS="classpath:/,classpath:/config/,file:./,file:./config/"
+export CUSTOM_SEARCH_LOCATIONS=${DEFAULT_SEARCH_LOCATIONS},file:${BASE_DIR}/conf/
 
 #===========================================================================================
 # JVM Configuration
@@ -87,9 +82,6 @@ if [[ "${MODE}" == "standalone" ]]; then
     JAVA_OPT="${JAVA_OPT} -Xms512m -Xmx512m -Xmn256m"
     JAVA_OPT="${JAVA_OPT} -Dnacos.standalone=true"
 else
-    if [[ "${EMBEDDED_STORAGE}" == "embedded" ]]; then
-        JAVA_OPT="${JAVA_OPT} -DembeddedStorage=true"
-    fi
     JAVA_OPT="${JAVA_OPT} -server -Xms2g -Xmx2g -Xmn1g -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=320m"
     JAVA_OPT="${JAVA_OPT} -XX:-OmitStackTraceInFastThrow -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=${BASE_DIR}/logs/java_heapdump.hprof"
     JAVA_OPT="${JAVA_OPT} -XX:-UseLargePages"
@@ -102,7 +94,6 @@ elif [[ "${FUNCTION_MODE}" == "naming" ]]; then
     JAVA_OPT="${JAVA_OPT} -Dnacos.functionMode=naming"
 fi
 
-JAVA_OPT="${JAVA_OPT} -Dnacos.member.list=${MEMBER_LIST}"
 
 JAVA_MAJOR_VERSION=$($JAVA -version 2>&1 | sed -E -n 's/.* version "([0-9]*).*$/\1/p')
 if [[ "$JAVA_MAJOR_VERSION" -ge "9" ]] ; then
@@ -112,11 +103,11 @@ else
   JAVA_OPT="${JAVA_OPT} -Xloggc:${BASE_DIR}/logs/nacos_gc.log -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UseGCLogFileRotation -XX:NumberOfGCLogFiles=10 -XX:GCLogFileSize=100M"
 fi
 
-JAVA_OPT="${JAVA_OPT} -Dloader.path=${BASE_DIR}/plugins/health,${BASE_DIR}/plugins/cmdb"
+JAVA_OPT="${JAVA_OPT} -Dloader.path=${BASE_DIR}/plugins/health,${BASE_DIR}/plugins/cmdb,${BASE_DIR}/plugins/mysql"
 JAVA_OPT="${JAVA_OPT} -Dnacos.home=${BASE_DIR}"
 JAVA_OPT="${JAVA_OPT} -jar ${BASE_DIR}/target/${SERVER}.jar"
 JAVA_OPT="${JAVA_OPT} ${JAVA_OPT_EXT}"
-JAVA_OPT="${JAVA_OPT} --spring.config.additional-location=${CUSTOM_SEARCH_LOCATIONS}"
+JAVA_OPT="${JAVA_OPT} --spring.config.location=${CUSTOM_SEARCH_LOCATIONS}"
 JAVA_OPT="${JAVA_OPT} --logging.config=${BASE_DIR}/conf/nacos-logback.xml"
 JAVA_OPT="${JAVA_OPT} --server.max-http-header-size=524288"
 
