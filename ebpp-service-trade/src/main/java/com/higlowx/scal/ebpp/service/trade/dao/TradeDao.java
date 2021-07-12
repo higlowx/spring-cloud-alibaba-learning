@@ -26,4 +26,14 @@ public class TradeDao {
         int rows = mapper.insert(row);
         AssertUtils.isTrue(rows == 1);
     }
+
+
+    public Trade selectById(Integer id) {
+        return mapper.selectByPrimaryKey(id);
+    }
+
+    public void updateById(Trade row) {
+        int rows = mapper.updateByPrimaryKeySelective(row);
+        AssertUtils.isTrue(rows == 1);
+    }
 }

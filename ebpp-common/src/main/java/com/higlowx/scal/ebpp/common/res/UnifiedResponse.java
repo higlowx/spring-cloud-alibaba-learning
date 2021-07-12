@@ -38,4 +38,8 @@ public class UnifiedResponse<T> {
     public long getTimeStrap() {
         return timeStrap;
     }
+
+    public boolean success() {
+        return this.code == UnifiedResponseCode.OK.code();
+    }
 }

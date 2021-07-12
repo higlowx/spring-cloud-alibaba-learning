@@ -23,7 +23,7 @@
 
 **Spring Boot**：2.3.2.RELEASE
 
-**Spring Cloud Greenwich**：Spring Cloud Hoxton.SR9
+**Spring Cloud**：Spring Cloud Hoxton.SR9
 
 ## 细节
 

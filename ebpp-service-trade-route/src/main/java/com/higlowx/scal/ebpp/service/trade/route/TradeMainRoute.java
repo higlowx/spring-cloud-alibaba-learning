@@ -20,5 +20,5 @@ public interface TradeMainRoute {
     UnifiedResponse<Object> create(@RequestParam BigDecimal amount);
 
     @GetMapping("/callback")
-    UnifiedResponse<String> callback(@RequestParam String requestBody);
+    UnifiedResponse<String> callback(@RequestParam Integer tradeId);
 }

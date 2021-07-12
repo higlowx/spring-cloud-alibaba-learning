@@ -27,8 +27,8 @@ public class MainController implements TradeMainRoute {
     }
 
     @Override
-    public UnifiedResponse<String> callback(String requestBody) {
-
+    public UnifiedResponse<String> callback(Integer tradeId) {
+        tradeService.paidTrade(tradeId);
         return UnifiedResponse.out(UnifiedResponseCode.OK, "");
     }
 }
