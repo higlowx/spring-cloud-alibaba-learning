@@ -31,4 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
-work\
+
+work/
+sentinel-dashboard-*.jar
