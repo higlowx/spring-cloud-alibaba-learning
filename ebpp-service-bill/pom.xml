@@ -24,6 +24,11 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <!-- higlowx -->
+        <dependency>
             <groupId>com.higlowx.scal</groupId>
             <artifactId>ebpp-service-bill-route</artifactId>
         </dependency>
