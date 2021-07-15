@@ -13,10 +13,22 @@ public class UnifiedResponse<T> {
     private final T data;
     private final long timeStrap = System.currentTimeMillis();
 
-    private UnifiedResponse(int code, String msg, T data) {
+    public UnifiedResponse(int code, String msg, T data) {
         this.code = code;
         this.msg = msg;
         this.data = data;
+    }
+
+    public UnifiedResponse(int code, String msg) {
+        this(code, msg, null);
+    }
+
+    public UnifiedResponse(UnifiedResponseCode code, String msg) {
+        this(code.code(), msg);
+    }
+
+    public UnifiedResponse(UnifiedResponseCode code) {
+        this(code.code(), code.msg());
     }
 
     public static <T> UnifiedResponse<T> out(UnifiedResponseCode code, T data) {
