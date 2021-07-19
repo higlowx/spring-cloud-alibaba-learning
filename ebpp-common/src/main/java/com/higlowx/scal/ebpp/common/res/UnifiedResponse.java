@@ -8,10 +8,13 @@ package com.higlowx.scal.ebpp.common.res;
 
 public class UnifiedResponse<T> {
 
-    private final int code;
-    private final String msg;
-    private final T data;
-    private final long timeStrap = System.currentTimeMillis();
+    private int code;
+    private String msg;
+    private T data;
+    private long timeStrap = System.currentTimeMillis();
+
+    public UnifiedResponse(){
+    }
 
     public UnifiedResponse(int code, String msg, T data) {
         this.code = code;
