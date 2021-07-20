@@ -45,7 +45,7 @@
 1. feign client在开启sentinel支持后，是怎样做到在消费侧处理服务提供者返回的sentinel异常的
    
     首先，如果服务提供方是被spring托管的话，一般都会有全局异常捕获处理逻辑，如果提供方绑定的sentinel规则被触发，继而抛出的BlockException异常为什么不会被全局异常机制捕获呢？
-    这里，我认为sentinel的执行机制是容器级别（如tomcat）的，大概就是说sentinel是在容器层工作，高于spring，sentinel的限流等机制会在触达spring之前就被拦截掉了，所以对应的BlockException也不会被spring中设置的异常规则锁捕获。
+    这里，我认为sentinel的执行机制是容器级别（如tomcat）的，大概就是说sentinel是在容器层工作，高于spring，当请求到达服务并触发sentinel的限流等机制，请求会在触达spring之前就被拦截掉了，所以对应的BlockException也不会被spring中设置的异常规则所捕获。
     关于具体实现，可以通过后续读源码再细究。
 
 2. 
