@@ -8,6 +8,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @date 2021/7/12
  * @since
  */
-@FeignClient(name = "ebpp-service-bill")
+@FeignClient(name = "ebpp-service-bill",fallbackFactory = BillClientFallbackFactory.class)
 public interface BillClient extends BillMainRoute {
 }

@@ -38,17 +38,18 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
             <exclusions>
-                <exclusion>
-                    <groupId>io.github.openfeign</groupId>
-                    <artifactId>feign-hystrix</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>commons-io</artifactId>
-                    <groupId>commons-io</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!-- higlowx -->
+                <!-- hystrix依赖本人原本认为不要引入，但是在后续整合sentinel的fallback逻辑时，需要实现feign.hystrix.FallbackFactory接口，所以恢复引入 -->
+                <!-- <exclusion> -->
+                    <!-- <groupId>io.github.openfeign</groupId> -->
+                    <!-- <artifactId>feign-hystrix</artifactId> -->
+                <!-- </exclusion> -->
+        <exclusion>
+            <artifactId>commons-io</artifactId>
+            <groupId>commons-io</groupId>
+        </exclusion>
+    </exclusions>
+</dependency>
+<!-- higlowx -->
         <dependency>
             <groupId>com.higlowx.scal</groupId>
             <artifactId>ebpp-service-trade-route</artifactId>
