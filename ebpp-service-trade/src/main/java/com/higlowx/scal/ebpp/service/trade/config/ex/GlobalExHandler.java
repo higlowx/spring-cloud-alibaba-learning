@@ -1,4 +1,4 @@
-package com.higlowx.scal.ebpp.service.trade.config;
+package com.higlowx.scal.ebpp.service.trade.config.ex;
 
 import com.higlowx.scal.ebpp.common.ex.UnifiedException;
 import com.higlowx.scal.ebpp.common.res.UnifiedResponse;
