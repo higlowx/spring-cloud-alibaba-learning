@@ -1,6 +1,5 @@
 # spring cloud alibaba learning
 以支付场景为例，模拟全套微服务解决方案在此场景下的使用
-
 ## 代码结构
 * ebpp-common 公共包，用于存储URI、常量、工具等
 * ebpp-gateway 网关服务，使用spring cloud gateway完成统一鉴权、负载均衡等
@@ -10,57 +9,48 @@
 * ebpp-service-trade 交易服务
 * ebpp-service-bill 账单服务，与支付系统配合模拟强一致性分布式事务，使用seata，基于全局事务管理理论（即两阶段提交）
 * ebpp-service-msg  消息服务，与支付系统配合模拟最终一致性分布式事务，使用消息中间件，基于可靠消息、最大努力通知理论
-
 ## 版本
-**Spring Cloud Alibaba**：2.2.6.RC1
-
-**Nacos**：1.4.2
-
-**Sentinel**：1.8.1
-
-**Seata**：1.3.0
-
-**RocketMQ**：4.4.0
-
-**Spring Boot**：2.3.2.RELEASE
-
-**Spring Cloud**：Spring Cloud Hoxton.SR9
-
+| Module | Version |
+| ------ |------|
+| Spring Cloud Alibaba | 2.2.6.RC1 |
+| Nacos | 1.4.2 |
+| Sentinel | 1.4.2 |
+| Seata | 1.3.0 |
+| RocketMQ | 4.4.0 |
+| Spring Boot | 2.3.2.RELEASE |
+| Spring Cloud | Spring Cloud Hoxton.SR9 |
 ## 细节
-
-### Nacos Client
-
+### Nacos
 #### 名词概念的理解
+1. 命名空间
 
-* **命名空间**
-  
-用于进行租户粒度的配置隔离。不同的命名空间下，可以存在相同的 Group 或 Data ID 的配置。Namespace 的常用场景之一是不同环境的配置的区分隔离，例如开发测试环境和生产环境的资源（如配置、服务）隔离等（摘自官方）。
-* **服务分组**
-  
+用于进行租户粒度的配置隔离。不同的命名空间下，可以存在相同的Group或DataID的配置。Namespace的常用场景之一是不同环境的配置的区分隔离，例如开发测试环境和生产环境的资源（如配置、服务）隔离等（摘自官方）。
+2. 服务分组
+
 不同的服务可以归类到同一分组。本人理解的是，可以用来定义同多种服务同属于一个项目集的标识。
-* **配置集**
-  
-一组相关或者不相关的配置项的集合称为配置集。在系统中，一个配置文件通常就是一个配置集，包含了系统各个方面的配置。例如，一个配置集可能包含了数据源、线程池、日志级别等配置项。
-* **配置集ID**
-  
-Nacos 中的某个配置集的 ID。配置集 ID 是组织划分配置的维度之一。Data ID 通常用于组织划分系统的配置集。一个系统或者应用可以包含多个配置集，每个配置集都可以被一个有意义的名称标识。Data ID 通常采用类 Java 包（如 com.taobao.tc.refund.log.level）的命名规则保证全局唯一性。此命名规则非强制。
+3. 配置集
+
+一组相关或者不相关的配置项的集合称为配置集。在系统中，一个配置文件通常就是一个配置集，包含了系统各个方面的配置。例如，一个配置集可能包含了数据源、线程池、日志级别等配置项（摘自官方）。
+4. 配置集ID
+
+Nacos中的某个配置集的ID。配置集ID是组织划分配置的维度之一。Data ID通常用于组织划分系统的配置集。一个系统或者应用可以包含多个配置集，每个配置集都可以被一个有意义的名称标识。Data ID通常采用类Java包（如 com.taobao.tc.refund.log.level）的命名规则保证全局唯一性。此命名规则非强制（摘自官方）。
   
 ### Sentinel
 
 #### 一些思考
-1. feign client在开启sentinel支持后，是怎样做到在消费侧处理服务提供者返回的sentinel异常的
-   
-首先，如果服务提供方是被spring托管的话，一般都会有全局异常捕获处理逻辑，如果提供方绑定的sentinel规则被触发，继而抛出的BlockException异常为什么不会被全局异常机制捕获呢？
-这里，我认为sentinel的执行机制是容器级别（如tomcat）的，大概就是说sentinel是在容器层工作，高于spring，当请求到达服务并触发sentinel的限流等机制，请求会在触达spring之前就被拦截掉了，所以对应的BlockException也不会被spring中设置的异常规则所捕获。
+1. Feign Client在开启Sentinel支持后，是怎样做到在消费侧处理服务提供者返回的Sentinel异常的
+
+首先，如果服务提供方是被Spring托管的话，一般都会有全局异常捕获处理逻辑，如果提供方绑定的Sentinel规则被触发，继而抛出的BlockException异常为什么不会被全局异常机制捕获呢？
+这里，我认为Sentinel的执行机制是容器级别（如Tomcat）的，大概就是说Sentinel是在容器层工作，应该是Filter逻辑，高于Spring，当请求到达服务并触发Sentinel的限流等机制，请求会在触达Spring之前就被拦截掉，所以对应的BlockException也不会被Spring中设置的异常规则所捕获。
 关于具体实现，可以通过后续读源码再细究。
 
-2. sentinel的数据持久化方案及具体实现
-   
-sentinel官方为我们提供了多种数据持久化方案，我们这里采用官方推荐的nacos config push持久化方案。
-目前，通过直接使用官方提供给我们的starter依赖，并做简单配置，再手动在nacos端发布对应的配置集，我们可以很方便的完成从远程同步sentinel配置的工作。
+2. Sentinel的数据持久化方案及具体实现
+
+Sentinel官方为我们提供了多种数据持久化方案，我们这里采用官方推荐的Nacos Config push方案。
+目前，通过直接使用官方提供给我们的starter依赖，并做简单配置，再手动在Nacos端发布对应的配置集，我们可以很方便的完成从远程同步Sentinel配置的工作。
 但是，手动配置很难在生产场景大规模应用，我们需要更加高效的方式完成配置集的初始化和动态更新。
 
-3. sentinel官方提供了基于SPI的datasource自动注册工具类InitFunc，其应用场景是什么
+3. Sentinel官方提供了基于SPI的Datasource自动注册工具类InitFunc，其应用场景是什么
 
 根据[官方说明](https://sentinelguard.io/zh-cn/docs/dynamic-rule-configuration.html) ，我们做了以下实验（源代码已被删除）。
 
@@ -79,7 +69,6 @@ import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,8 +87,8 @@ public class SentinelDataSourceInitFunc implements InitFunc {
     @Override
     public void init() throws Exception {
         
-        //误以为该init方法的作用是，根据每台部署机器的特性组装各种限流降级规则，然后向nacos config端传输配置，
-        //以免去初次生产部署应用，都要先在nacos端发布配置集，然后再启动应用的问题，现在想来有些误入歧途了，而且有报错。
+        //误以为该init方法的作用是，根据每台部署机器的特性组装各种限流降级规则，然后向Nacos传输配置，
+        //以免去初次生产部署应用，都要先在Nacos发布配置集，然后再启动应用的问题，现在想来有些误入歧途了，而且有报错。
         
         //误入歧途 开始
         
@@ -147,9 +136,9 @@ com.higlowx.scal.ebpp.service.bill.config.spi.SentinelDataSourceInitFunc
 
 运行后得到的结论：
 
-官方提供的该方法只可以做到应用从nacos config端获取sentinel配置，且内部有监听nacos服务push过来的配置更新逻辑，后续会自动刷到本实例内存中。
+官方提供的该方法只可以做到应用从Nacos端获取Sentinel配置，且内部会监听Nacos push过来的配置更新，后续会自动刷到本实例内存中。
 
-如果我们想要实现nacos配置集的更新，且不是通过最原始的手动配置方式，官方也给出了一些简易示例：
+如果我们想要实现Nacos配置集的更新，且不是通过最原始的手动配置方式，官方也给出了一些简易示例：
 
 ```java
 /*
