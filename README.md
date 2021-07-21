@@ -88,7 +88,7 @@ public class SentinelDataSourceInitFunc implements InitFunc {
 
     private static final String SERVER_ADDR = "localhost:8488";
     private static final String GROUP_ID = "DEFAULT_GROUP";
-    private static final String DATA_ID = "com.higlowx.scal.ebpp.service.bill.sebtinel";
+    private static final String DATA_ID = "com.higlowx.scal.ebpp.service.bill.sentinel";
     
     @Override
     public void init() throws Exception {
