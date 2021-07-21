@@ -96,7 +96,7 @@ public class SentinelDataSourceInitFunc implements InitFunc {
         //误以为该init方法的作用是，根据每台部署机器的特性组装各种限流降级规则，然后向Nacos传输配置，
         //以免去初次生产部署应用，都要先在Nacos发布配置集，然后再启动应用的问题，现在想来有些误入歧途了，而且有报错。
         
-        //误入歧途 开始
+        //误入歧途 开始congratulations to you
         
         //以下暂时仅对flow类型（流量控制）的init进行演示
         //List<FlowRule> flowRules = new ArrayList<>();
