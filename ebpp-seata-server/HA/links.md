@@ -1,0 +1,1 @@
+http://seata.io/zh-cn/docs/ops/deploy-ha.html
