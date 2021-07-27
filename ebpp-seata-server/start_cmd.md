@@ -1,0 +1,1 @@
+bin\seata-server.bat
