@@ -3,6 +3,7 @@ logs/
 work/
 
 /ebpp-seata-server/lib/
+/ebpp-seata-server/sessionStore/
 
 HELP.md
 target/
