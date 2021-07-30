@@ -21,16 +21,17 @@ public class BillService {
 
 
     public Bill create(BigDecimal amount, Integer tradeId) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            throw new UnifiedException();
-        }
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//            throw new UnifiedException();
+//        }
         Bill bill = new Bill();
         bill.setTradeId(tradeId);
         bill.setAmount(amount);
         billDao.insert(bill);
-        return bill;
+        throw new UnifiedException();
+        //return bill;
     }
 }

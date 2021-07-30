@@ -6,6 +6,7 @@ import com.higlowx.scal.ebpp.common.utils.AssertUtils;
 import com.higlowx.scal.ebpp.service.trade.dao.TradeDao;
 import com.higlowx.scal.ebpp.service.trade.entity.Trade;
 import com.higlowx.scal.ebpp.service.trade.rpc.BillClient;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,7 @@ public class TradeService {
         return trade;
     }
 
+    @GlobalTransactional
     public void paidTrade(Integer tradeId) {
         Trade trade = tradeDao.selectById(tradeId);
         AssertUtils.notNull(trade);
