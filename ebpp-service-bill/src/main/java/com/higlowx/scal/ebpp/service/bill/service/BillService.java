@@ -5,6 +5,7 @@ import com.higlowx.scal.ebpp.service.bill.dao.BillDao;
 import com.higlowx.scal.ebpp.service.bill.entity.Bill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -20,6 +21,7 @@ public class BillService {
     private BillDao billDao;
 
 
+    @Transactional(rollbackFor = Throwable.class)
     public Bill create(BigDecimal amount, Integer tradeId) {
 //        try {
 //            Thread.sleep(1000);
@@ -31,7 +33,6 @@ public class BillService {
         bill.setTradeId(tradeId);
         bill.setAmount(amount);
         billDao.insert(bill);
-        throw new UnifiedException();
-        //return bill;
+        return bill;
     }
 }

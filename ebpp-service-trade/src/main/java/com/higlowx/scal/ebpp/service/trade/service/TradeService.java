@@ -9,6 +9,7 @@ import com.higlowx.scal.ebpp.service.trade.rpc.BillClient;
 import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -33,14 +34,16 @@ public class TradeService {
         return trade;
     }
 
-    @GlobalTransactional
+    @GlobalTransactional(rollbackFor = Throwable.class)
     public void paidTrade(Integer tradeId) {
         Trade trade = tradeDao.selectById(tradeId);
         AssertUtils.notNull(trade);
-        trade.setStatus(true);
-        tradeDao.updateById(trade);
         UnifiedResponse<Object> billResult = billClient.create(trade.getAmount(), tradeId);
         System.out.println(JSON.toJSONString(billResult));
         AssertUtils.isTrue(billResult.success(), "调用账单系统创建账单失败");
+        trade.setStatus(true);
+        tradeDao.updateById(trade);
+        //模拟异常导致分布式事务问题，观察bill和trade数据是否统一
+        //int i = 1 / 0;
     }
 }
