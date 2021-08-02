@@ -1,0 +1,13 @@
+@startuml
+客户端 -> gateway: 外部交易成功请求
+gateway -> trade服务: 转发至trade服务
+trade服务 -> trade服务: 执行本地事务成功
+trade服务 -> bill服务: 请求创建账单
+bill服务 -> bill服务: 执行本地事务成功
+bill服务 -> trade服务: 创建账单成功
+trade服务 -> 客户端: 交易成功处理完毕并响应
+bill服务 --> bill服务: 执行本地事务失败
+bill服务 --> trade服务: 创建账单失败
+trade服务 --> trade服务: 回滚本地事务
+trade服务 --> 客户端: 交易成功处理失败并响应
+@enduml
