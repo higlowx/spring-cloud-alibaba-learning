@@ -196,7 +196,7 @@ public class NacosConfigSender {
 
 ### Seata
 
-####一些思考
+#### 一些思考
 
 1. 在具体业务中，服务的调用顺序对分布式事务的影响
 
