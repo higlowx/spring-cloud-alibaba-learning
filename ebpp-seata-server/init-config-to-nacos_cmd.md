@@ -116,6 +116,7 @@ Parameter Description:
 
 -w: password, nacos 1.2.0+ on permission control, the default value is ''.
 
+本项目中执行：sh script/config-center/nacos/nacos-config.sh -g SEATA_GROUP -u nacos -w nacos
 
 
 
