@@ -71,7 +71,7 @@
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>5.1.5</version>
+                <version>${mysql-connector-java.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -129,6 +129,24 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>mysql5</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <mysql-connector-java.version>5.1.5</mysql-connector-java.version>
+            </properties>
+        </profile>
+        <profile>
+            <id>mysql8</id>
+            <properties>
+                <mysql-connector-java.version>8.0.26</mysql-connector-java.version>
+            </properties>
+        </profile>
+    </profiles>
 
     <build>
         <pluginManagement>
