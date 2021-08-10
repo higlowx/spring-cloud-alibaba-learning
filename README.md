@@ -16,7 +16,7 @@
 | ------ |------|
 | Spring Cloud Alibaba | 2.2.6.RC1 |
 | Nacos | 1.4.2 |
-| Sentinel | 1.4.2 |
+| Sentinel | 1.8.1 |
 | Seata | 1.3.0 |
 | RocketMQ | 4.4.0 |
 | Spring Boot | 2.3.2.RELEASE |
