@@ -7,4 +7,5 @@
 cd ebpp-nacos-server && mkdir -p target && cd target
 wget https://github.com/alibaba/nacos/releases/download/1.4.2/nacos-server-1.4.2.tar.gz
 tar -zvxf *.tar.gz
+mv nacos/target/nacos-server.jar ./ && rm -rf nacos/ && rm -rf *.gz
 ```
