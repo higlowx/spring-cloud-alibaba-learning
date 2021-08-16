@@ -24,10 +24,14 @@
         </dependency>
 
         <!-- spring cloud alibaba begin-->
-        <!-- nacos discovery -->
+        <!-- nacos -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
         <!-- sentinel dependence for service instance itself -->
         <dependency>
