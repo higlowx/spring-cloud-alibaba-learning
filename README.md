@@ -1,7 +1,7 @@
-# spring cloud alibaba learning
+# 🔥 spring cloud alibaba learning
 以支付场景为例，模拟全套微服务解决方案在此场景下的使用，详细介绍在[这里](https://higlowx.com/blog/spring-cloud-alibaba-wei-fu-wu-jie-jue-fang-an-ru-he-luo-di-chu-tan) 。
 
-## 主要功能
+## 🎨 主要功能
 
 - **流控与服务降级（Flow Control and service degradation）**：默认支持 WebServlet、WebFlux, OpenFeign、RestTemplate、Spring Cloud Gateway, Zuul, Dubbo 和 RocketMQ 限流降级功能的接入，可以在运行时通过控制台实时修改限流降级规则，还支持查看限流降级 Metrics 监控。
 - **服务注册与发现（Service registration and discovery）**：适配 Spring Cloud 服务注册与发现标准，默认集成了 Ribbon 负载均衡的支持。
@@ -11,7 +11,7 @@
 - **微服务网关（Microservices Gateway）**：为整套内部微服务链路提供一个可靠且高性能的对外网关，并配套流控、路由、鉴权等能力。
 - **服务间远程过程调用（Remote Procedure Call）**：提供可靠方便的RPC框架，实现各个系统间就像在调用本地程序一样地调用远程服务。
 
-## 组件版本
+## 📌 组件版本
 
 | 组件 | 版本 | 功能 |
 | ------ |------|------|
@@ -23,7 +23,7 @@
 | Spring Cloud Gateway Server | 2.2.6.RELEASE | 微服务网关 |
 | Spring Cloud OpenFeign | 2.2.6.RELEASE | RPC调用组件，未使用官方推荐的Dubbo |
 
-## 代码结构
+## 👉 代码结构
 
 * ebpp-common 公共包，用于存储URI、常量、工具等
 * ebpp-gateway 网关服务，使用spring cloud gateway完成统一鉴权、负载均衡等
