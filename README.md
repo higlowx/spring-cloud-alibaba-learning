@@ -25,11 +25,11 @@
 
 ## 👉 代码结构
 
-* ebpp-common 公共包，用于存储URI、常量、工具等
-* ebpp-gateway 网关服务，使用spring cloud gateway完成统一鉴权、负载均衡等
-* ebpp-nacos-server nacos服务，用作服务注册发现、服务管理、服务路由、配置中心等
-* ebpp-sentinel-dashboard sentinel控制台服务
-* ebpp-**-route 路径路由，用于各服务API接口的定义，携带URI、出入参等，便于其他服务引用，以及解决URI变化造成其他调用者无法获知导致调用失败的问题
-* ebpp-service-trade 交易服务
-* ebpp-service-bill 账单服务，与支付系统配合模拟强一致性分布式事务，使用seata，基于全局事务管理理论（即两阶段提交）
-* ebpp-service-msg  消息服务，与支付系统配合模拟最终一致性分布式事务，使用消息中间件，基于可靠消息、最大努力通知理论
+- **ebpp-common**： 公共包，用于存储URI、常量、工具等。
+- **ebpp-gateway** ：网关服务，使用 Spring Cloud Gateway 完成统一鉴权、负载均衡等。
+- **ebpp-nacos-server**： Nacos服务，用作服务注册发现、服务管理、服务路由、配置中心等。
+- **ebpp-sentinel-dashboard**： Sentinel 控制台服务。
+- **ebpp-seata-server**：Seata TC 服务，进行分布式事务协调。
+- **ebpp-xxx-route**： 路径路由，用于各服务API接口的定义，携带URI、出入参等，便于其他服务引用，以及解决URI变化造成其他调用者无法获知导致调用失败的问题。
+- **ebpp-service-trade**： 交易服务。
+- **ebpp-service-bil**l： 账单服务，与支付系统配合模拟强一致性分布式事务，使用seata，基于全局事务管理理论（两阶段提交）变种出的AT模式。
