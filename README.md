@@ -1,5 +1,5 @@
 # 🔥 spring cloud alibaba learning
-以支付场景为例，模拟全套微服务解决方案在此场景下的使用，详细介绍在[这里](https://higlowx.com/blog/spring-cloud-alibaba-wei-fu-wu-jie-jue-fang-an-ru-he-luo-di-chu-tan) 。
+以支付场景为例，模拟全套微服务解决方案在此场景下的使用，详细介绍在[这里](https://www.higlowx.com/blog/how-implement-spring-cloud-alibaba-microservices-solution-1) 。
 
 ## 🎨 主要功能
 
